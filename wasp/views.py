@@ -7,5 +7,5 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def index(request):
-	return render(request, 'wasp/base.html')
+	return render(request, 'base.html')
     #return HttpResponse("Rango says hey there partner!")
