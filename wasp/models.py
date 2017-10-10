@@ -17,8 +17,8 @@ class User(models.Model):
 		return self.name
 	
 	def save(self, *args, **kwargs):
-        ''' On save, update timestamps '''
-        if not self.id:
-            self.time_created = timezone.now()
-        self.time_updated = timezone.now()
-        return super(User, self).save(*args, **kwargs)
+		''' On save, update timestamps '''
+		if not self.id:
+		    self.time_created = timezone.now()
+		self.time_updated = timezone.now()
+		return super(User, self).save(*args, **kwargs)
