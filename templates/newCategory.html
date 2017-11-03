@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+	<form action="{% url 'newcategory' %}" method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+	{{ form.as_p }}
+    
+    <input type="submit" class="btn btn-success" value="Submit">
+    <a href="{% url 'category' %}"><input type="button" class="btn btn-danger" value="Cancel"></a>
+</form>
+{% endblock %}

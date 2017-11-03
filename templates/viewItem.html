@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if item %}
+<div class="col-md-12">
+	<img class="img img-responsive" src="{{item.document.url}}">
+	<h2 class="text-center">{{item.name}}</h2>
+	<p class="text-center">{{item.description}}</p>
+
+	{% if user %}
+	<p class="text-center"><a href="{% url 'edititem' item.category.id item.id %}"><button class="btn btn-primary">Edit this item</button></a> </p>
+	{% endif %}
+
+</div>
+{% endif %}
+{% endblock %}

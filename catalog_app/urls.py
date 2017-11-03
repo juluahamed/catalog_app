@@ -17,8 +17,17 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.conf.urls import include
 from wasp import views
+from authentication import views as a_views
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
+    url(r'^$', views.category, name='index'),
     url(r'^category/', include('wasp.urls')),
-    url(r'^admin/', admin.site.urls),
+    url('^api/v1/', include('social_django.urls', namespace='social')),
+    url(r'^auth/', include('authentication.urls')),
+    url(r'^admin/', admin.site.urls)
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

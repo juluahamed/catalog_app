@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if items %}
+	{% for item in items %}
+	<div class="col-md-3 col-xs-4 box_grid" redir="{% url 'viewitem' item.category.id item.id %}">
+			<img class="img-responsive" src="{{item.document.url}}">
+			<p class="text-center">{{item.name}}</p>
+			<p class="text-center short_desc">{{item.description}}</p>
+			<p class="text-center">{{item.time_created}}</p>
+		
+		{% if user %}
+		<a href="{% url 'edititem' item.category.id item.id %}"><button class="btn btn-primary btn-block">Edit</button></a>
+		{% endif %}
+	</div>
+	{% endfor %}
+{% else %}
+<p class="text-center">No Items to display</p>
+{% endif %}
+{% endblock %}

@@ -17,6 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_root/')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
@@ -39,7 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'wasp',
+    'social_django',
+    'authentication',
 ]
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -53,6 +58,11 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'catalog_app.urls'
 
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -64,6 +74,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends', # this
+                'social_django.context_processors.login_redirect', # and this
             ],
         },
     },
@@ -71,14 +83,22 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'catalog_app.wsgi.application'
 
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '274550834123-n53jnd5lum9d736hg6otub03t499558l.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'Ne19IZmGMSqhD7uOacyKZ15v'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['email']
 
+LOGIN_REDIRECT_URL = '/category/'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+'default': {
+    'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    'NAME': 'catalog',
+    'USER': 'catalog_app',
+    'PASSWORD': 'p4$$M3',
+    'HOST': 'localhost',
+    'PORT': '',
     }
 }
 
@@ -121,3 +141,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [STATIC_DIR, ]
+
+MEDIA_URL = '/media/'
+

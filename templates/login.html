@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+	{% block content %}
+	<div class="text-center">
+	<h3 class="text-center">Login with your favourite account</h3>
+	<a href="{% url 'social:begin' 'google-oauth2' %}"><button class="btn btn-primary">Login via Google</button></a></div>
+ 	
+	{% endblock %}
+
+
