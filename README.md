@@ -1,5 +1,5 @@
 # Catalog App
-A basic catalog app built on Django and postgres
+A basic catalog app built on Django and postgres 
 ## Requirements
 - Django
 - Postgres
@@ -8,7 +8,7 @@ A basic catalog app built on Django and postgres
 - social-auth-app-django
 ## Installation And Configuration
 - Clone this repo
-```git clone https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-django-application-on-ubuntu-14-04```
+```git clone https://github.com/juluahamed/catalog_app.git```
 - Install pip
 - Install , create and activate a virtual environment
 - Set up the environment
@@ -24,14 +24,8 @@ A basic catalog app built on Django and postgres
 ```python manage.py migrate```
 - Collect static to track the changes to the static files. Or use third party libraries to automate this process
 ``` python manage.py collectstatic```
-- If you are hosting this on a server, set up ufw to allow only necssary ports (like ssh, port 80 )
+- If you are hosting this on a server, set up ufw to allow only necssary ports (like ssh, port 80)
 
-## Server Configurations(For udacity course)
-- allows ssh only through port 2200
-- Remote login as root disabled
-- Password Aunthentication disabled
-- Only ports enabled are ssh-> 2200, NTP ->123 and HTTP ->80
-- Created a user named 'grader' with sudo privilage
 
 
 
