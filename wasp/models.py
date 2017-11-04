@@ -12,7 +12,7 @@ class User(models.Model):
 	time_created = models.DateTimeField(editable=False)
 	time_updated = models.DateTimeField()
 	
-	def __unicode__(self): # For Python 2, use __unicode__ too
+	def __unicode__(self): # For Python 2
 		return self.name
 	
 	def save(self, *args, **kwargs):
@@ -30,7 +30,7 @@ class Category(models.Model):
 	time_created = models.DateTimeField(editable=False)
 	time_updated = models.DateTimeField()
 	
-	def __unicode__(self): # For Python 2, use __unicode__ too
+	def __unicode__(self): # For Python 2
 		return self.name
 	
 	def save(self, *args, **kwargs):

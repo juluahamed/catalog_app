@@ -7,6 +7,7 @@
 	{{form.as_p}}
     
     <input type="submit" class="btn btn-success" value="Submit">
-    <a href="{% url 'viewitem' form.initial.category.id form.initial.id %}" ><input type="button" class="btn btn-danger" value="Cancel">
+    <a href="{% url 'deleteitem' form.initial.category.id form.initial.id %}" ><input type="button" class="btn btn-danger" value="Delete">
+    <a href="{% url 'viewitem' form.initial.category.id form.initial.id %}" ><input type="button" class="btn btn-warning" value="Cancel">
 </form>
 {% endblock %}

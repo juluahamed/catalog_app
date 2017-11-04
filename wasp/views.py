@@ -15,7 +15,6 @@ def index(request):
 	request.session['fav_color'] = 'blue'
 	context_dict={'hello':request.session['fav_color']}
 	return render(request, 'base.html', context= context_dict)
-    #return HttpResponse("Rango says hey there partner!")
 
 def category(request):
 	if request.user.is_authenticated:
@@ -31,18 +30,14 @@ def category(request):
 @check_user_logged_in
 def newCategory(request):
 	if request.method == 'POST':
-		print(request.FILES)
 		# create a form instance and populate it with data from the request:
 		form = CategoryForm(request.POST,request.FILES)
 		# check whether it's valid:
 		if form.is_valid():
-			print(form.cleaned_data)
 			instance = Category(name=form.cleaned_data['name'], document=form.cleaned_data['document'], user_id= User.objects.get(email=request.user.email))
 			instance.save()
 			return redirect(category)
 		else:
-			print(form.errors)
-			print("Somethings Off")
 			return redirect(category)
 
 		# if a GET (or any other method) we'll create a blank form
@@ -63,28 +58,18 @@ def viewCategory(request, id=None):
 @check_user_logged_in
 def newItem(request):
 	if request.method == 'POST':
-		print(request.FILES)
 		# create a form instance and populate it with data from the request:
 		form = ItemForm(request.POST,request.FILES)
 		# check whether it's valid:
 		if form.is_valid():
-			print(form.cleaned_data)
-			print("its valid")
 			instance = Item(name=form.cleaned_data['name'], description= form.cleaned_data['description'],
 							document= form.cleaned_data['document'],
 							 user_id= User.objects.get(email=request.user.email),
 							 category= form.cleaned_data['category'])
 			instance.save()
-			print(instance)
 			return redirect(viewCategory, id =form.cleaned_data['category'].id)
 		else:
-			print(form.errors)
-			print(form.source.errors)
-			print(form.non_field_errors)
-			print("Somethings Off")
 			return redirect(viewCategory, id =form.cleaned_data['category'].id)
-
-		# if a GET (or any other method) we'll create a blank form
 	else:
 		form = ItemForm()
 		return render(request, 'newItem.html', {'form': form})
@@ -92,6 +77,8 @@ def newItem(request):
 @check_item
 def viewItem(request, c_id=None, i_id=None, item=None):
 	return render(request, 'viewItem.html', {'item': item})
+
+@check_user_logged_in
 @check_item	
 def editItem(request, c_id=None, i_id=None, item=None):
 	if request.method == 'POST':
@@ -101,8 +88,6 @@ def editItem(request, c_id=None, i_id=None, item=None):
 		form = ItemForm(request.POST,request.FILES)
 		# check whether it's valid:
 		if form.is_valid():
-			print(form.cleaned_data)
-			print("its valid")
 			instance = Item.objects.get(id=i_id)
 			instance.name= form.cleaned_data['name']
 			instance.description= form.cleaned_data['description']
@@ -110,24 +95,12 @@ def editItem(request, c_id=None, i_id=None, item=None):
 			instance.user_id= User.objects.get(email=request.user.email)
 			instance.category= form.cleaned_data['category']
 			instance.save()
-			print(instance)
 			return redirect(viewCategory, id =form.cleaned_data['category'].id)
 		else:
-			print(form.errors)
-			print(form.non_field_errors)
-			print("Somethings Off")
 			return redirect(viewCategory, id =form.cleaned_data['category'].id)
-
-		# if a GET (or any other method) we'll create a blank form
 	else:
-		print(item)
 		form = ItemForm(initial={'id': item.id, 'name': item.name, 'description': item.description,
 						 'document': item.document, 'category': item.category})
-		# form.name = item.name
-		# form.description = item.description
-		# form.document = item.document
-		# form.category = item.category
-		# form.user_id = item.user_id
 		return render(request, 'editItem.html', {'form': form})
 
 @check_user_logged_in

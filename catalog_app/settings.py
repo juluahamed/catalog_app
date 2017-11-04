@@ -95,7 +95,7 @@ DATABASES = {
 'default': {
     'ENGINE': 'django.db.backends.postgresql_psycopg2',
     'NAME': 'catalog',
-    'USER': 'catalog',
+    'USER': 'catalog_app',
     'PASSWORD': 'p4$$M3',
     'HOST': 'localhost',
     'PORT': '',

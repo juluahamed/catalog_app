@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
-	<form action="{% url 'deleteitem' item.category.id item.id %}" method="post">
+	<form action="{% url 'deleteitem' item.category.id item.id %}" method="post" enctype="multipart/form-data">
 		{% csrf_token %}
 		<p>Are you sure you want to delete '{{item.name}}'' ?</p>
-		<button type='submit' class="btn btn-danger">Delete</button>
-		<a href=""><button class="btn btn-info">Cancel</button></a>
+		<input type='submit' class="btn btn-danger" value="Delete">
+		<a href="{% url 'viewitem' item.category.id item.id %}"><input type="button" class="btn btn-info" value="Cancel"></a>
 	</form>
 {% endblock %}
