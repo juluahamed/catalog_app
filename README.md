@@ -5,7 +5,7 @@ A basic catalog app built on Django and postgres
 - Postgres
 - Bootstrap
 - Jquery
-- social-auth-django
+- social-auth-app-django
 ## Installation And Configuration
 - Clone this repo
 ```git clone https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-django-application-on-ubuntu-14-04```
