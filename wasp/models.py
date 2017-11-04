@@ -25,7 +25,7 @@ class User(models.Model):
 
 class Category(models.Model):
 	name = models.CharField(max_length=50)
-	user_id = models.ForeignKey(User)
+	user_id = models.ForeignKey(User, on_delete=models.CASCADE)
 	document = models.ImageField(upload_to='category_image/')
 	time_created = models.DateTimeField(editable=False)
 	time_updated = models.DateTimeField()
@@ -43,8 +43,8 @@ class Category(models.Model):
 class Item(models.Model):
 	name = models.CharField(max_length=50)
 	description = models.TextField(max_length=300, default='')
-	user_id = models.ForeignKey(User)
-	category = models.ForeignKey(Category)
+	user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+	category = models.ForeignKey(Category, on_delete=models.CASCADE)
 	document = models.ImageField(upload_to='item_image/')
 	time_created = models.DateTimeField(editable=False)
 	time_updated = models.DateTimeField()
