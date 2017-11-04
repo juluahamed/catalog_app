@@ -27,7 +27,7 @@ A basic catalog app built on Django and postgres
 - If you are hosting this on a server, set up ufw to allow only necssary ports (like ssh, port 80)
 
 ## Debugging
-- Application can be accessed at (http://35.154.100.41.xip.io/) and this is because application uses google oauth authentication and it does not approve public ip address as redirect uri.
+- Pubic IP of server is 35.154.100.41, but the application should be accessed at (http://35.154.100.41.xip.io/) and this is because application uses google oauth authentication and it does not approve public ip address as redirect uri.
 
 
 
