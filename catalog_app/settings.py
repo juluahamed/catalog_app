@@ -27,7 +27,7 @@ SECRET_KEY = 'h+u=8*@z8ej4%fi$4qcqd(-b22a$v8&h2tl%q$f7@el(f3q*dp'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['35.154.100.41', 'localhost']
+ALLOWED_HOSTS = ['35.154.100.41', 'localhost', '35.154.100.41.xip.io']
 
 
 # Application definition
@@ -95,7 +95,7 @@ DATABASES = {
 'default': {
     'ENGINE': 'django.db.backends.postgresql_psycopg2',
     'NAME': 'catalog',
-    'USER': 'catalog_app',
+    'USER': 'catalog',
     'PASSWORD': 'p4$$M3',
     'HOST': 'localhost',
     'PORT': '',
